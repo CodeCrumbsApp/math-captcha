@@ -5,15 +5,15 @@
 		captchaInputSelector,
 		isValidStyleSelector,
 	}) {
-		const submitButton = formClassSelector.querySelector(
-			'input[type=submit]'
+		const submitButton = document.querySelector(
+			`${formClassSelector} input[type=submit]`
 		)
 		submitButton.setAttribute('disabled', 'disabled')
 
-		const captchaLabel = formClassSelector.querySelector(
+		const captchaLabel = document.querySelector(
 			captchaLabelSelector
 		)
-		const captchaInput = formClassSelector.querySelector(
+		const captchaInput = document.querySelector(
 			captchaInputSelector
 		)
 
