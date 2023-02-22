@@ -21,7 +21,7 @@
 		const rndmNr2 = Math.floor(Math.random() * 10)
 		const totalNr = rndmNr1 + rndmNr2
 
-		captchaLabel.textContent = `${rndmNr1} + ${rndmNr2} =`
+		captchaLabel.innerHtml = `${rndmNr1} + ${rndmNr2} =`
 		captchaInput.setAttribute(
 			'placeholder',
 			`${rndmNr1} + ${rndmNr2} =`
