@@ -3,7 +3,8 @@
 		formClassSelector,
 		captchaLabelSelector,
 		captchaInputSelector,
-		targetAttribute = 'valid-captcha-class',
+		validTargetAttribute = 'valid-captcha-class',
+		invalidTargetAttribute = 'invalid-captcha-class',
 	}) {
 		const form = document.querySelector(formClassSelector)
 		const submitButton = form.querySelector(
@@ -59,34 +60,60 @@
 		captchaInput.addEventListener('keyup', () => {
 			if (captchaInput.value == totalNr) {
 				submitButton.removeAttribute('disabled')
-				addValidClassToElements()
+				addValidClassesToElements()
+				removeInvalidClassesFromElements()
 			} else {
 				submitButton.setAttribute('disabled', 'disabled')
-				removeValidClassToElements()
+				removeValidClassesFromElements()
+				addInvalidClassesToElements()
 			}
 		})
 
-		const addValidClassToElements = () => {
+		const addValidClassesToElements = () => {
 			const elements = document.querySelectorAll(
-				`[${targetAttribute}]`
+				`[${validTargetAttribute}]`
 			)
 			elements.forEach((element) => {
 				const validClass = element.getAttribute(
-					`${targetAttribute}`
+					`${validTargetAttribute}`
 				)
 				element.classList.add(validClass)
 			})
 		}
 
-		const removeValidClassToElements = () => {
+		const addInvalidClassesToElements = () => {
 			const elements = document.querySelectorAll(
-				`[${targetAttribute}]`
+				`[${invalidTargetAttribute}]`
+			)
+			elements.forEach((element) => {
+				const invalidClass = element.getAttribute(
+					`${invalidTargetAttribute}`
+				)
+				element.classList.add(invalidClass)
+			})
+		}
+
+		const removeValidClassesFromElements = () => {
+			const elements = document.querySelectorAll(
+				`[${validTargetAttribute}]`
 			)
 			elements.forEach((element) => {
 				const validClass = element.getAttribute(
-					`${targetAttribute}`
+					`${validTargetAttribute}`
 				)
 				element.classList.remove(validClass)
+			})
+		}
+
+		const removeInvalidClassesFromElements = () => {
+			const elements = document.querySelectorAll(
+				`[${invalidTargetAttribute}]`
+			)
+			elements.forEach((element) => {
+				const invalidClass = element.getAttribute(
+					`${invalidTargetAttribute}`
+				)
+				element.classList.remove(invalidClass)
 			})
 		}
 	}
