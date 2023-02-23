@@ -67,7 +67,6 @@
 		})
 
 		const addValidClassToElements = () => {
-			console.log('addValidClassToElements')
 			const elements = document.querySelectorAll(
 				`[${targetAttribute}]`
 			)
@@ -80,7 +79,6 @@
 		}
 
 		const removeValidClassToElements = () => {
-			console.log('removeValidClassToElements')
 			const elements = document.querySelectorAll(
 				`[${targetAttribute}]`
 			)
