@@ -5,6 +5,7 @@
 		captchaInputSelector,
 		validTargetAttribute = 'valid-captcha-class',
 		invalidTargetAttribute = 'invalid-captcha-class',
+		removeClassesOnEmptyInput = true,
 	}) {
 		const form = document.querySelector(formClassSelector)
 		const submitButton = form.querySelector(
@@ -58,7 +59,14 @@
 		)
 
 		captchaInput.addEventListener('keyup', () => {
-			if (captchaInput.value == totalNr) {
+			if (
+				captchaInput.value == '' &&
+				removeClassesOnEmptyInput
+			) {
+				submitButton.setAttribute('disabled', 'disabled')
+				removeValidClassesFromElements()
+				removeInvalidClassesFromElements()
+			} else if (captchaInput.value == totalNr) {
 				submitButton.removeAttribute('disabled')
 				addValidClassesToElements()
 				removeInvalidClassesFromElements()
