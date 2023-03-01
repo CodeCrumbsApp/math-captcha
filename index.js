@@ -1,5 +1,5 @@
 ;(function (global) {
-	global.mathCaptcha = function ({
+	global.MathCaptcha = function ({
 		formClassSelector,
 		captchaLabelSelector,
 		captchaInputSelector,
@@ -8,23 +8,15 @@
 		removeClassesOnEmptyInput = true,
 	}) {
 		const form = document.querySelector(formClassSelector)
-		const submitButton = form.querySelector(
-			'input[type=submit]'
-		)
+		const submitButton = form.querySelector('input[type=submit]')
 
 		submitButton.setAttribute('disabled', 'disabled')
 
-		const captchaLabel = document.querySelector(
-			captchaLabelSelector
-		)
-		const captchaInput = document.querySelector(
-			captchaInputSelector
-		)
+		const captchaLabel = document.querySelector(captchaLabelSelector)
+		const captchaInput = document.querySelector(captchaInputSelector)
 
 		if (!form) {
-			throw new Error(
-				`No form found with the selector ${formClassSelector}`
-			)
+			throw new Error(`No form found with the selector ${formClassSelector}`)
 		}
 
 		if (!submitButton) {
@@ -53,16 +45,10 @@
 			captchaLabel.innerHtml = `${rndmNr1} + ${rndmNr2} =`
 		}
 
-		captchaInput.setAttribute(
-			'placeholder',
-			`${rndmNr1} + ${rndmNr2} =`
-		)
+		captchaInput.setAttribute('placeholder', `${rndmNr1} + ${rndmNr2} =`)
 
 		captchaInput.addEventListener('keyup', () => {
-			if (
-				captchaInput.value == '' &&
-				removeClassesOnEmptyInput
-			) {
+			if (captchaInput.value == '' && removeClassesOnEmptyInput) {
 				submitButton.setAttribute('disabled', 'disabled')
 				removeValidClassesFromElements()
 				removeInvalidClassesFromElements()
@@ -78,49 +64,33 @@
 		})
 
 		const addValidClassesToElements = () => {
-			const elements = document.querySelectorAll(
-				`[${validTargetAttribute}]`
-			)
+			const elements = document.querySelectorAll(`[${validTargetAttribute}]`)
 			elements.forEach((element) => {
-				const validClass = element.getAttribute(
-					`${validTargetAttribute}`
-				)
+				const validClass = element.getAttribute(`${validTargetAttribute}`)
 				element.classList.add(validClass)
 			})
 		}
 
 		const addInvalidClassesToElements = () => {
-			const elements = document.querySelectorAll(
-				`[${invalidTargetAttribute}]`
-			)
+			const elements = document.querySelectorAll(`[${invalidTargetAttribute}]`)
 			elements.forEach((element) => {
-				const invalidClass = element.getAttribute(
-					`${invalidTargetAttribute}`
-				)
+				const invalidClass = element.getAttribute(`${invalidTargetAttribute}`)
 				element.classList.add(invalidClass)
 			})
 		}
 
 		const removeValidClassesFromElements = () => {
-			const elements = document.querySelectorAll(
-				`[${validTargetAttribute}]`
-			)
+			const elements = document.querySelectorAll(`[${validTargetAttribute}]`)
 			elements.forEach((element) => {
-				const validClass = element.getAttribute(
-					`${validTargetAttribute}`
-				)
+				const validClass = element.getAttribute(`${validTargetAttribute}`)
 				element.classList.remove(validClass)
 			})
 		}
 
 		const removeInvalidClassesFromElements = () => {
-			const elements = document.querySelectorAll(
-				`[${invalidTargetAttribute}]`
-			)
+			const elements = document.querySelectorAll(`[${invalidTargetAttribute}]`)
 			elements.forEach((element) => {
-				const invalidClass = element.getAttribute(
-					`${invalidTargetAttribute}`
-				)
+				const invalidClass = element.getAttribute(`${invalidTargetAttribute}`)
 				element.classList.remove(invalidClass)
 			})
 		}
